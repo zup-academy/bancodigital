@@ -1,5 +1,6 @@
 package com.zupedu.bancodigital.conta;
 
+import com.zupedu.bancodigital.produto.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -9,11 +10,14 @@ import org.springframework.web.bind.annotation.*;
 public class ContaController {
 
     @Autowired
-    public ContaRepository contaRepository;
+    private ContaRepository contaRepository;
+
+    @Autowired
+    private ProdutoRepository produtoRepository;
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ContaResponse criar(@RequestBody ContaRequest request){
-        var conta = request.getConta();
+        var conta = request.getConta(produtoRepository);
 
         conta = contaRepository.save(conta);
 

@@ -1,11 +1,12 @@
 package com.zupedu.bancodigital.conta;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
+import com.zupedu.bancodigital.produto.ProdutoRepository;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ContaRequest {
 
@@ -20,6 +21,9 @@ public class ContaRequest {
     private long numero;
 
     private BigDecimal saldo;
+
+    @NotEmpty
+    private List<Long> produtos;
 
     public void setDocumentoTitular(String documentoTitular) {
         this.documentoTitular = documentoTitular;
@@ -41,8 +45,12 @@ public class ContaRequest {
         this.saldo = saldo;
     }
 
-    public Conta getConta() {
+    public Conta getConta(ProdutoRepository produtoRepository) {
+        var produtos = this.produtos.stream()
+                .map(id -> produtoRepository.getById(id))
+                .collect(Collectors.toList());
+
         return new Conta(this.documentoTitular, this.nomeTitular,
-                this.agencia, this.numero, this.saldo);
+                this.agencia, this.numero, this.saldo, produtos);
     }
 }
