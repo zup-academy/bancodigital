@@ -1,15 +1,14 @@
 package com.zupedu.bancodigital.conta;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 public class ContaRequest {
 
     @NotBlank
+    @CPF
     private String documentoTitular;
 
     @NotBlank
@@ -41,7 +40,7 @@ public class ContaRequest {
         this.saldo = saldo;
     }
 
-    public Conta getConta() {
+    public Conta toModel() {
         return new Conta(this.documentoTitular, this.nomeTitular,
                 this.agencia, this.numero, this.saldo);
     }

@@ -37,6 +37,12 @@ public class ContaResponse {
         this.dataCriacao = dataCriacao;
     }
 
+    public static ContaResponse from(Conta conta) {
+        return new ContaResponse(conta.getId(), conta.getDocumentoTitular(),
+                conta.getNomeTitular(), conta.getAgencia(), conta.getNumero(),
+                conta.getSaldo(), conta.getDataCriacao());
+    }
+
     public Long getId() {
         return id;
     }
