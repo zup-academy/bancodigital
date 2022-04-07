@@ -24,7 +24,7 @@ public class ContaController {
 
         if(contaRepository.findByDocumentoTitular(conta.getDocumentoTitular()).isPresent()){
 
-            return ResponseEntity.badRequest().body("Já existe um usuário com mesmo CPF!");
+            return ResponseEntity.badRequest().body("Já existe uma conta com mesmo CPF!");
 
         }else{
             conta = contaRepository.save(conta);
