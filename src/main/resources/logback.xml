@@ -13,7 +13,7 @@
 
 
     <appender name="ArquivoRolante" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/spring-boot-logger.log</file>
+        <file>${LOGS}/spring-boot-logger.log</file>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/application-json.%d{yyyy-MM-dd}.%i.gz
