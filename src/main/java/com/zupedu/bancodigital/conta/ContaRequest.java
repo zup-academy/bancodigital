@@ -3,15 +3,17 @@ package com.zupedu.bancodigital.conta;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public class ContaRequest {
 
-    @NotBlank
     @CPF
+    @NotBlank
+    @NotNull
     private String documentoTitular;
 
-    @NotBlank
+    @NotNull
     private String nomeTitular;
 
     private int agencia;

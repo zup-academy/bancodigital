@@ -1,6 +1,8 @@
 package com.zupedu.bancodigital.error;
 
 import com.zupedu.bancodigital.transferencia.ContaAgenciaNumeroInexistente;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
@@ -11,8 +13,12 @@ import java.util.Map;
 @RestControllerAdvice
 public class ExceptionHandler {
 
+    Logger logger = LoggerFactory.getLogger(ExceptionHandler.class);
+
     @org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleDatabaseErrors(RuntimeException e, WebRequest request) {
+
+        logger.error(" Exception: {} ", e.getLocalizedMessage());
 
         Map<String, Object> body = Map.of(
                 "status", 500,
@@ -27,6 +33,8 @@ public class ExceptionHandler {
 
     @org.springframework.web.bind.annotation.ExceptionHandler(ContaAgenciaNumeroInexistente.class)
     public ResponseEntity<?> handleDatabaseErrorsRequest(ContaAgenciaNumeroInexistente e, WebRequest request) {
+
+        logger.error(" Causa: {} ", e.getMessage());
 
         Map<String, Object> body = Map.of(
                 "status", 422,

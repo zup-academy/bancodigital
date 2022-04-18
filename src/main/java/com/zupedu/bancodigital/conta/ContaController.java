@@ -8,6 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/contas")
 public class ContaController {
@@ -18,7 +20,7 @@ public class ContaController {
     public ContaRepository contaRepository;
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> inserir(@RequestBody ContaRequest request){
+    public ResponseEntity<?> inserir(@Valid @RequestBody ContaRequest request){
         logger.info("Cadastrando Conta");
         var conta = request.toModel();
 
@@ -37,12 +39,23 @@ public class ContaController {
         }
     }
 
-    @DeleteMapping("/{id}")
     public void excluir(@PathVariable Long id){
         var conta = contaRepository.findById(id).orElseThrow(ContaIdInexistenteException::new);
 
         logger.info("Conta excluída com sucesso");
 
         contaRepository.delete(conta);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id){
+        logger.info("Conta de id {} excluída com sucesso");
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> consultar(@PathVariable Long id){
+        logger.info("Conta de id {} consultada com sucesso", id);
+
+        return ResponseEntity.ok().body("Pesquisa realizada com sucesso");
     }
 }
