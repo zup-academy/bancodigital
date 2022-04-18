@@ -10,8 +10,8 @@
             </Pattern>
         </layout>
     </appender>
-    
-    <appender name="ArquivoRolante" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+    <appender name="arquivo" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOGS}/spring-boot-logger.log</file>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -26,7 +26,7 @@
 
     <!-- LOG everything at INFO level -->
     <root level="info">
-        <appender-ref ref="ArquivoRolante" />
+        <appender-ref ref="arquivo" />
         <appender-ref ref="Console" />
     </root>
 

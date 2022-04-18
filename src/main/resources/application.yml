@@ -1,14 +1,37 @@
 server:
 spring:
-  jpa:
-    hibernate:
-      ddl-auto: none
   datasource:
-    url: jdbc:h2:~/bancodigital
-    username: root
-    password: root
-    driver-class-name: org.h2.Driver
-  h2:
-    console:
+    url: "jdbc:postgresql://localhost:5432/bancodigital"
+    password: admin
+    username: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    ddl-auto: create
+    generate-ddl: true
+    show-sql: false
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+management:
+  health:
+    db:
       enabled: true
-      path: /h2
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+  info:
+    build:
+      enabled: true
+    env:
+      enabled: true
+    git:
+      enabled: true
+    java:
+      enabled: true
