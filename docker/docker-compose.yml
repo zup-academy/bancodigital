@@ -3,13 +3,18 @@ services:
   app:
     build: ..
     ports:
-      - 8080:8080
+      - "8080:8080"
+    hostname: bancodigital
+    container_name: bancodigital
     volumes:
       - ../logs:/logs
+    depends_on:
+      - db
   db:
     image: postgres
     restart: always
     hostname: db
+    container_name: db
     ports:
       - "5432:5432"
     environment:

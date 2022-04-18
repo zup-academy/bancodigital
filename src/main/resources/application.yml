@@ -1,7 +1,6 @@
-server:
 spring:
   datasource:
-    url: "jdbc:postgresql://localhost:5432/bancodigital"
+    url: "jdbc:postgresql://db:5432/bancodigital"
     password: admin
     username: admin
     driver-class-name: org.postgresql.Driver
@@ -14,7 +13,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-
 management:
   health:
     db:
