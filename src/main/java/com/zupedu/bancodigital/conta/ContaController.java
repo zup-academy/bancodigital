@@ -42,14 +42,14 @@ public class ContaController {
     public void excluir(@PathVariable Long id){
         var conta = contaRepository.findById(id).orElseThrow(ContaIdInexistenteException::new);
 
-        logger.info("Conta excluída com sucesso");
+        logger.info("Conta excluída com sucesso de id {} ", id);
 
         contaRepository.delete(conta);
     }
 
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id){
-        logger.info("Conta de id {} excluída com sucesso");
+        logger.info("Conta excluída com sucesso, id {}", id);
     }
 
     @GetMapping("/{id}")
