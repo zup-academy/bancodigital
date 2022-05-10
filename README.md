@@ -35,26 +35,24 @@ tags = {
 - No arquivo cw_agent_config.json você irá alterar o nome do log_group_name adicionando seu nome ao final como no exemplo abaixo:
 
 ```text
-   "log_group_name": "bancodigital paula"
+   "log_group_name": "bancodigitalpaula"
 ```
 
 ## Executando esse projeto em uma instância da AWS
 
-1- Baixar o repósitório / branch : https://github.com/zup-academy/terraform-ec2-cloudwatch/tree/monitoria-e-tracing-tc3-tl1
+1- Acessar https://zup.awsapps.com/start#/
 
-2- Acessar https://zup.awsapps.com/start#/
+2- Escolher o "zup-edu-ot-sandbox" e clicar na opção  "Command line or programmatic access"
 
-3- Escolher o "zup-edu-ot-sandbox" e clicar na opção  "Command line or programmatic access"
+2- Copie os três primeiros dados de identificação
 
-4- Copie os três primeiros dados de identificação
+4- Acesse o projeto Terraforma e dentro do diretório você irá abrir o terminal e irá colar as credenciais que copiou da AWS.
 
-5- Dentro do diretório clonado do projeto Terraform, você irá abrir o terminal e irá colar as credenciais que copiou da AWS.
-
-6- Para criar a infra você deverá colocar no terminal o comando
+6- Para criar a infraestrutura você deverá colocar no terminal o comando:
 
     make start
 
-7- Após irá acessar o console da AWS pelo navegador, acessar o serviço EC2 e entrar na máquina identificada por amazonlinux bancodigital ec2
+7- Após irá acessar o console da AWS pelo navegador, acessar o serviço EC2 e entrar na máquina identificada por amazonlinux bancodigital ec2 (seu nome)
 
 8- clique no ID da instância , após do lado direito superior no botão connect, e depois session manager , opção connect.
 
@@ -70,11 +68,8 @@ tags = {
 
     docker-compose -f /opt/bancodigital/docker/docker-compose.yml up -d
 
-Caso queira parar os containers
 
-    docker-compose -f /opt/bancodigital/docker/docker-compose.yml down
-
-
-Para excluir a infra, você deverá acessar o projeto do Terraform e logar novamente no terminal com suas credenciais e depois colocar o comando 
+12- Ao final das atividade é muito importante que você exclua a infraestrutura criada.
+Você deverá acessar o projeto do Terraform e logar novamente no terminal com suas credenciais e depois colocar o comando.
     
     make stop

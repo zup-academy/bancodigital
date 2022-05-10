@@ -58,6 +58,6 @@ public class ContaController {
 
         logger.info("Conta de id {} consultada com sucesso", id);
 
-        return ResponseEntity.ok().body("Pesquisa realizada com sucesso");
+        return ResponseEntity.ok().body(ContaResponse.from(conta.get()));
     }
 }
