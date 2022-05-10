@@ -65,6 +65,7 @@ tags = {
 10- em seguida execute :
 
     bash -c 'cd /opt/bancodigital && git checkout monitoria-e-tracing-tc3-tl1'
+    
 11- Depois execute :
 
     docker-compose -f /opt/bancodigital/docker/docker-compose.yml up -d
