@@ -21,7 +21,7 @@ public class ContaController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> inserir(@Valid @RequestBody ContaRequest request){
-        logger.info("Cadastrando Conta");
+        logger.info("Cadastrando uma nova Conta");
         var conta = request.toModel();
 
         if(contaRepository.findByDocumentoTitular(conta.getDocumentoTitular()).isPresent()){
@@ -39,6 +39,7 @@ public class ContaController {
         }
     }
 
+    @DeleteMapping("/{id}")
     public void excluir(@PathVariable Long id){
         var conta = contaRepository.findById(id).orElseThrow(ContaIdInexistenteException::new);
 
@@ -47,13 +48,14 @@ public class ContaController {
         contaRepository.delete(conta);
     }
 
-    @DeleteMapping("/{id}")
-    public void deletar(@PathVariable Long id){
-        logger.info("Conta excluída com sucesso, id {}", id);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<?> consultar(@PathVariable Long id){
+        var conta = contaRepository.findById(id);
+
+        if(conta.isEmpty()){
+            return ResponseEntity.badRequest().body("Não foi possível encontrar conta com este id");
+        }
+
         logger.info("Conta de id {} consultada com sucesso", id);
 
         return ResponseEntity.ok().body("Pesquisa realizada com sucesso");
