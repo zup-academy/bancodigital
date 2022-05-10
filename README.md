@@ -8,7 +8,7 @@
 $ git clone https://github.com/zup-academy/bancodigital/
 ```
 
-2. Ir para a branch `hexagonal-tc1-lt3`
+2. Ir para a branch `hexagonal-tc1-lt2`
 
 ```sh
 $ git checkout hexagonal-tc1-lt2
