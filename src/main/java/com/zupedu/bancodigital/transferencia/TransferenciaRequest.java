@@ -32,11 +32,11 @@ public class TransferenciaRequest {
 
     public Transferencia toModel(ContaRepository contaRepository) {
 
-        var contaDestino = contaRepository.finByAgenciaAndNumero(
+        var contaDestino = contaRepository.findByAgenciaAndNumero(
                         this.contaDestino.getAgencia(), this.contaDestino.getNumero())
                 .orElseThrow(ContaAgenciaNumeroInexistente::new);
 
-        var contaOrigem = contaRepository.finByAgenciaAndNumero(
+        var contaOrigem = contaRepository.findByAgenciaAndNumero(
                         this.contaOrigem.getAgencia(), this.contaOrigem.getNumero())
                 .orElseThrow(ContaAgenciaNumeroInexistente::new);
 
