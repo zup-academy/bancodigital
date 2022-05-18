@@ -4,7 +4,7 @@
 
 Siga os passos conforme a seguinte doc:
 
-https://github.com/zup-academy/plataforma-treino-lms-infra/blob/master/survival_kit/ACESSO_AWS.md
+https://github.com/zup-academy/materiais-publicos-treinamentos/blob/main/monitoria-e-tracing/acesso-aws.md
 
 ## Intalação
 
