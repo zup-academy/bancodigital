@@ -1,6 +1,6 @@
 version: '3.0'
 services:
-  app:
+  bancodigital:
     build: ..
     ports:
       - "8080:8080"
@@ -8,6 +8,8 @@ services:
     container_name: bancodigital
     volumes:
       - ../logs:/logs
+    networks:
+      - metricas
     depends_on:
       - db
   db:
@@ -17,7 +19,37 @@ services:
     container_name: db
     ports:
       - "5432:5432"
+    networks:
+      - metricas
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=bancodigital
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - prometheus-volume:/etc/prometheus/
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - metricas
+  grafana:
+    image: grafana/grafana
+    volumes:
+      - grafana-volume:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - metricas
+    depends_on:
+      - prometheus
+
+volumes:
+  grafana-volume:
+  prometheus-volume:
+
+
+networks:
+  metricas:
+    driver: bridge
