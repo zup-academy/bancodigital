@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: "jdbc:postgresql://db:5432/bancodigital"
+    url: "jdbc:postgresql://localhost:5432/bancodigital"
     password: admin
     username: admin
     driver-class-name: org.postgresql.Driver
@@ -23,13 +23,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, info, metrics, prometheus
-  info:
-    build:
-      enabled: true
-    env:
-      enabled: true
-    git:
-      enabled: true
-    java:
-      enabled: true
+        include: health, info, metrics

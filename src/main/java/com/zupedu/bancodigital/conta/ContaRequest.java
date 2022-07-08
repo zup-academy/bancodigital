@@ -8,7 +8,6 @@ import java.math.BigDecimal;
 
 public class ContaRequest {
 
-    @CPF
     @NotBlank
     @NotNull
     private String documentoTitular;
