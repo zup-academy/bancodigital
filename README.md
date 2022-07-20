@@ -1,4 +1,4 @@
-# Farmácia Digital
+# Banco digital
 
 ## Instruções para rodar o projeto
 
