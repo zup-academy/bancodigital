@@ -1,3 +1,7 @@
+server:
+  port: 8081
+application:
+  name: bancodigital
 spring:
   datasource:
     url: "jdbc:postgresql://localhost:5432/bancodigital"
@@ -24,3 +28,25 @@ management:
     web:
       exposure:
         include: health, info, metrics
+
+  autoconfigure:
+    exclude:
+      - org.springframework.cloud.aws.autoconfigure.context.ContextRegionProviderAutoConfiguration
+      - org.springframework.cloud.aws.autoconfigure.context.ContextInstanceDataAutoConfiguration
+      - org.springframework.cloud.aws.autoconfigure.context.ContextStackAutoConfiguration
+      - org.springframework.cloud.aws.autoconfigure.context.ContextCredentialsAutoConfiguration
+
+cloud:
+  aws:
+    stack:
+      auto: false
+    region:
+      static: sa-east-1
+      auto: false
+    credentials:
+      access-key: fakeAccessKeyId
+      secret-key: fakeSecretAccessKey
+    end-point:
+      uri: http://localhost:4566
+    queue:
+      name: pagamentos_realizados
