@@ -1,5 +1,6 @@
 package com.zupedu.bancodigital.pagamento;
 
+import com.zupedu.bancodigital.transferencia.Transferencia;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class PagamentoRealizadoProducer {
     @Value("${cloud.aws.queue.name}")
     private String queue;
 
+    @Value("${application.name}")
+    private String aplicationName;
+
     @Autowired
     private QueueMessagingTemplate messagingTemplate;
 
@@ -32,12 +36,12 @@ public class PagamentoRealizadoProducer {
     }
 
     @Async
-    public void send(BigDecimal valor, long numeroConta,
-                     int agenciaConta, String origem,
-                     TipoPagamentoEnum tipoPagamento){
+    public void send(Transferencia transferencia, TipoPagamentoEnum tipoPagamentoEnum){
         PagamentoRealizado pagamentoRealizado =
-                new PagamentoRealizado(valor, numeroConta,
-                        agenciaConta, origem, tipoPagamento);
+                new PagamentoRealizado(transferencia.getId(),transferencia.getValor(),
+                        transferencia.getContaOrigem().getNumero(),
+                        transferencia.getContaOrigem().getAgencia(),
+                        aplicationName, tipoPagamentoEnum );
 
         send(pagamentoRealizado);
     }

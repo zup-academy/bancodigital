@@ -28,9 +28,6 @@ public class TransferenciaController {
     @Autowired
     private PagamentoRealizadoProducer pagamentoRealizadoService;
 
-    @Value("${application.name}")
-    private String aplicationName;
-
     @PostMapping
     public TransferenciaResponse inserir(@Valid @RequestBody TransferenciaRequest request){
 
@@ -38,10 +35,7 @@ public class TransferenciaController {
 
         transferenciaRepository.save(transferencia);
 
-        pagamentoRealizadoService.send(transferencia.getValor(),
-                transferencia.getContaOrigem().getNumero(),
-                transferencia.getContaOrigem().getAgencia(),
-                aplicationName, TipoPagamentoEnum.TED);
+        pagamentoRealizadoService.send(transferencia, TipoPagamentoEnum.TED);
 
         return TransferenciaResponse.from(transferencia);
     }

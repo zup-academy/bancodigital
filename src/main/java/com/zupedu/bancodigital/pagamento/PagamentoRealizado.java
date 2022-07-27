@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 public class PagamentoRealizado {
 
+    private Long codigoPagamento;
+
     private BigDecimal valor;
 
     private long numeroConta;
@@ -15,12 +17,23 @@ public class PagamentoRealizado {
     private TipoPagamentoEnum tipoPagamento;
 
 
-    public PagamentoRealizado(BigDecimal valor, long numeroConta, int agenciaConta, String origem, TipoPagamentoEnum tipoPagamento) {
+    public PagamentoRealizado(Long codigoPagamento, BigDecimal valor,
+                              long numeroConta, int agenciaConta,
+                              String origem, TipoPagamentoEnum tipoPagamento) {
+        this.codigoPagamento = codigoPagamento;
         this.valor = valor;
         this.numeroConta = numeroConta;
         this.agenciaConta = agenciaConta;
         this.origem = origem;
         this.tipoPagamento = tipoPagamento;
+    }
+
+    public Long getCodigoPagamento() {
+        return codigoPagamento;
+    }
+
+    public void setCodigoPagamento(Long codigoPagamento) {
+        this.codigoPagamento = codigoPagamento;
     }
 
     public BigDecimal getValor() {
@@ -66,10 +79,11 @@ public class PagamentoRealizado {
     @Override
     public String toString() {
         return "PagamentoRealizado{" +
-                "valor=" + valor +
+                "codigoPagamento=" + codigoPagamento +
+                ", valor=" + valor +
                 ", numeroConta=" + numeroConta +
                 ", agenciaConta=" + agenciaConta +
-                ", origem=" + origem +
+                ", origem='" + origem + '\'' +
                 ", tipoPagamento=" + tipoPagamento +
                 '}';
     }
